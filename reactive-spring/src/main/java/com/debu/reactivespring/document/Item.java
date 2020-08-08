@@ -1,0 +1,20 @@
+package com.debu.reactivespring.document;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Item {
+    @Id
+    private String id;
+    private String description;
+    private String price;
+}

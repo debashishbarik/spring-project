@@ -1,10 +1,10 @@
 HELP.md
 .gradle/
+target/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-target/
 ### STS ###
 .apt_generated
 .classpath
@@ -13,9 +13,8 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr

@@ -21,17 +21,36 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation ('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
+	{
+		exclude module: "spring-boot-starter-logging"
+		exclude module: "logback-classic"
+	}
+	implementation ('org.springframework.boot:spring-boot-starter-parent:2.2.4.RELEASE'){
+		exclude module: "spring-boot-starter-logging"
+		exclude module: "logback-classic"
+	}
+	implementation ('org.springframework.boot:spring-boot-starter-webflux'){
+		exclude module: "spring-boot-starter-logging"
+		exclude module: "logback-classic"
+	}
 	implementation 'org.slf4j:slf4j-api:1.7.30'
 	implementation 'org.slf4j:slf4j-simple:1.7.30'
-	implementation 'org.projectlombok:lombok:1.18.12'
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	testCompile 'org.projectlombok:lombok'
+	testImplementation 'org.projectlombok:lombok'
+	testImplementation ('org.springframework.boot:spring-boot-starter-test'){
+		exclude module: "spring-boot-starter-logging"
+		exclude module: "logback-classic"
+	}
 	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	testImplementation 'io.projectreactor:reactor-test'
 }
-
+configurations.all {
+	exclude module: 'slf4j-log4j12'
+}
 test {
 	useJUnitPlatform()
 }
